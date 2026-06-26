@@ -1,66 +1,32 @@
 # Metal-Slug-Raylib
 
-A Metal Slug-style 2D run-and-gun shooter built in C++ with [raylib](https://www.raylib.com/). Fight through five themed levels (desert, jungle, city, space) against tanks, UFOs and zombies, then take on the end boss.
+A Metal Slug-style 2D run-and-gun shooter in C++ with [raylib](https://www.raylib.com/) — five themed levels (desert, jungle, city, space), tanks, UFOs, zombies, and an end boss.
 
-## Tech stack
+**Stack:** C++14 · raylib 5.5 · CMake · vcpkg
 
-- **C++14**
-- **raylib 5.5** (graphics, input, audio)
-- **CMake** build system
-- **vcpkg** for dependency management
-
-## Project structure
+## Structure
 
 ```
-Metal-Slug-Raylib/
-├── src/            # Implementation: main.cpp, Game, Player, Enemy, Level, Bullet
-├── include/        # Class headers
-├── assets/         # Sprites, parallax backgrounds, music
-├── tests/          # Headless core-logic tests (no GPU/window needed)
-└── CMakeLists.txt
+src/        # main.cpp, Game, Player, Enemy, Level, Bullet
+include/    # class headers
+assets/     # sprites, backgrounds, music
+tests/      # headless core-logic tests
 ```
-
-## Prerequisites
-
-- CMake 3.16+
-- A C++14 compiler (MSVC, MinGW, or Clang)
-- raylib 5.5 — easiest via vcpkg: `vcpkg install raylib`
 
 ## Build & run
 
+Requires CMake 3.16+, a C++14 compiler, and raylib (`vcpkg install raylib`).
+
 ```sh
-# Configure (point CMAKE_TOOLCHAIN_FILE at your vcpkg install)
 cmake -S . -B build -DCMAKE_TOOLCHAIN_FILE=<vcpkg>/scripts/buildsystems/vcpkg.cmake
-
-# Build
 cmake --build build --config Debug
-
-# Run (assets are copied next to the executable during the build)
-cd build/Debug && ./metal_slug
-```
-
-## Tests
-
-The core game logic (bullet motion, off-screen detection, colliders, player health)
-is covered by a headless test harness that runs without opening a window:
-
-```sh
-ctest --test-dir build -C Debug
-# or run the binary directly:
-./build/Debug/core_tests
+cd build/Debug && ./metal_slug      # assets are copied next to the binary
+ctest --test-dir ../.. -C Debug     # run the tests
 ```
 
 ## Controls
 
-| Action | Keys |
-| ------ | ---- |
-| Move   | `A` / `D` or `←` / `→` |
-| Jump   | `W` / `↑` / `Space` |
-| Shoot  | `S` |
-| Start / confirm | `Enter` |
-| Pause  | `Esc` |
-| Restart | `R` |
-| Quit   | `Q` |
+Move `A`/`D` or `←`/`→` · Jump `W`/`↑`/`Space` · Shoot `S` · Start `Enter` · Pause `Esc` · Restart `R` · Quit `Q`
 
 ## Author
 
